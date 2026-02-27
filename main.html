@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quote of the Day</title>  <!-- Google Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Libre+Baskerville&display=swap" rel="stylesheet">  <style>
+    :root {
+      --bg-color: #1e1a16;
+      --card-color: #2a231d;
+      --accent-color: #8b6b4f;
+      --text-color: #f2e9e1;
+      --muted-text: #c4b8ad;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Libre Baskerville', serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid #3a2f26;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      color: var(--accent-color);
+      margin: 0;
+    }
+
+    nav {
+      margin-top: 1rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: var(--muted-text);
+      font-size: 0.9rem;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+    }
+
+    main {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .quote-card {
+      background-color: var(--card-color);
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quote-author {
+      text-align: right;
+      font-style: italic;
+      color: var(--muted-text);
+    }
+
+    .quote-date {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--muted-text);
+      text-align: center;
+    }
+
+    ul.quote-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.quote-list li {
+      background-color: var(--card-color);
+      margin-bottom: 1rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted-text);
+    }
+
+    /* Future feature placeholders */
+    .actions {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .actions button {
+      background: none;
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .actions button:hover {
+      background-color: var(--accent-color);
+      color: var(--bg-color);
+    }
+
+    @media (max-width: 600px) {
+      .quote-text {
+        font-size: 1.3rem;
+      }
+    }
+  </style></head>
+<body><header>
+  <h1>Daily Literary Quote</h1>
+  <nav>
+    <a href="#" onclick="showSection('today')">Today</a>
+    <a href="#" onclick="showSection('past')">Past Quotes</a>
+    <a href="#" onclick="showSection('about')">About</a>
+  </nav>
+</header><main>
+  <!-- Quote of the Day -->
+  <section id="today" class="active">
+    <div class="quote-card">
+      <div class="quote-text" id="quoteText">“We read to know we are not alone.”</div>
+      <div class="quote-author" id="quoteAuthor">— C.S. Lewis</div><div class="actions">
+    <!-- Placeholder for future features -->
+    <button disabled>♡ Save</button>
+    <button disabled>↗ Share</button>
+  </div>
+
+  <div class="quote-date" id="quoteDate"></div>
+</div>
+
+  </section>  <!-- Past Quotes -->  <section id="past">
+    <h2>Past Quotes</h2>
+    <ul class="quote-list">
+      <li>“There is no friend as loyal as a book.” — Ernest Hemingway</li>
+      <li>“I have always imagined that Paradise will be a kind of library.” — Jorge Luis Borges</li>
+      <li>“A room without books is like a body without a soul.” — Marcus Tullius Cicero</li>
+    </ul>
+  </section>  <!-- About -->  <section id="about">
+    <h2>About This Project</h2>
+    <p>
+      This project was born from a love of literature, silence, and small daily rituals.
+      Each day, a single quote is offered — something to pause with, to reflect on,
+      or to carry with you.
+    </p>
+    <p>
+      The website is designed to feel like a quiet library: warm tones, classic typography,
+      and no distractions.
+    </p>
+  </section>
+</main><footer>
+  © 2026 — Daily Literary Quote
+</footer><script>
+  function showSection(id) {
+    document.querySelectorAll('main section').forEach(section => {
+      section.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+  }
+
+  // Set today's date
+  const dateElement = document.getElementById('quoteDate');
+  const today = new Date();
+  dateElement.textContent = today.toDateString();
+</script></body>
+</html>

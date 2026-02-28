@@ -2,54 +2,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quote of the Day</title>  <!-- Google Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Libre+Baskerville&display=swap" rel="stylesheet">  <style>
+  <title>Daily Quote</title>  <!-- Fontes clássicas -->  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Libre+Baskerville&display=swap" rel="stylesheet">  <style>
     :root {
-      --bg-color: #1e1a16;
-      --card-color: #2a231d;
-      --accent-color: #8b6b4f;
-      --text-color: #f2e9e1;
-      --muted-text: #c4b8ad;
-    }
-
-    * {
-      box-sizing: border-box;
+      --bg: #1e1a16;
+      --card: #2a231d;
+      --accent: #8b6b4f;
+      --text: #f2e9e1;
+      --muted: #c4b8ad;
     }
 
     body {
       margin: 0;
       font-family: 'Libre Baskerville', serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
     header {
-      padding: 1.5rem;
       text-align: center;
+      padding: 1.5rem;
       border-bottom: 1px solid #3a2f26;
     }
 
-    header h1 {
+    h1 {
       font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      color: var(--accent-color);
+      color: var(--accent);
       margin: 0;
-    }
-
-    nav {
-      margin-top: 1rem;
     }
 
     nav a {
       margin: 0 1rem;
+      color: var(--muted);
       text-decoration: none;
-      color: var(--muted-text);
       font-size: 0.9rem;
     }
 
-    nav a:hover {
-      color: var(--accent-color);
-    }
+    nav a:hover { color: var(--accent); }
 
     main {
       max-width: 800px;
@@ -57,19 +46,14 @@
       padding: 0 1.5rem;
     }
 
-    section {
-      display: none;
-    }
-
-    section.active {
-      display: block;
-    }
+    section { display: none; }
+    section.active { display: block; }
 
     .quote-card {
-      background-color: var(--card-color);
+      background: var(--card);
       padding: 2.5rem;
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
     }
 
     .quote-text {
@@ -81,36 +65,9 @@
     .quote-author {
       text-align: right;
       font-style: italic;
-      color: var(--muted-text);
+      color: var(--muted);
     }
 
-    .quote-date {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      color: var(--muted-text);
-      text-align: center;
-    }
-
-    ul.quote-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    ul.quote-list li {
-      background-color: var(--card-color);
-      margin-bottom: 1rem;
-      padding: 1.5rem;
-      border-radius: 10px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.8rem;
-      color: var(--muted-text);
-    }
-
-    /* Future feature placeholders */
     .actions {
       margin-top: 2rem;
       display: flex;
@@ -118,80 +75,199 @@
       gap: 1rem;
     }
 
-    .actions button {
+    button {
       background: none;
-      border: 1px solid var(--accent-color);
-      color: var(--accent-color);
-      padding: 0.5rem 1rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: .5rem 1.2rem;
       border-radius: 20px;
       cursor: pointer;
       font-family: inherit;
     }
 
-    .actions button:hover {
-      background-color: var(--accent-color);
-      color: var(--bg-color);
+    button:hover {
+      background: var(--accent);
+      color: var(--bg);
     }
 
-    @media (max-width: 600px) {
-      .quote-text {
-        font-size: 1.3rem;
-      }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: .8rem;
+      color: var(--muted);
     }
   </style></head>
 <body><header>
-  <h1>Daily Literary Quote</h1>
+  <h1>Daily Quote</h1>
   <nav>
     <a href="#" onclick="showSection('today')">Today</a>
-    <a href="#" onclick="showSection('past')">Past Quotes</a>
+    <a href="#" onclick="showSection('archive')">Archive</a>
+    <a href="#" onclick="showSection('favorites')">Favorites</a>
     <a href="#" onclick="showSection('about')">About</a>
+    <span id="authArea" style="margin-left:1rem"></span>
   </nav>
 </header><main>
-  <!-- Quote of the Day -->
+  <!-- Today -->
   <section id="today" class="active">
     <div class="quote-card">
-      <div class="quote-text" id="quoteText">“We read to know we are not alone.”</div>
-      <div class="quote-author" id="quoteAuthor">— C.S. Lewis</div><div class="actions">
-    <!-- Placeholder for future features -->
-    <button disabled>♡ Save</button>
-    <button disabled>↗ Share</button>
+      <div class="quote-text" id="quoteText"></div>
+      <div class="quote-author" id="quoteAuthor"></div><div class="actions">
+    <!-- Futuro: Supabase -->
+    <button onclick="saveQuote()">♡ Save</button>
+    <button onclick="shareQuote()">↗ Share</button>
   </div>
-
-  <div class="quote-date" id="quoteDate"></div>
 </div>
 
-  </section>  <!-- Past Quotes -->  <section id="past">
-    <h2>Past Quotes</h2>
-    <ul class="quote-list">
-      <li>“There is no friend as loyal as a book.” — Ernest Hemingway</li>
-      <li>“I have always imagined that Paradise will be a kind of library.” — Jorge Luis Borges</li>
-      <li>“A room without books is like a body without a soul.” — Marcus Tullius Cicero</li>
-    </ul>
+  </section>  <!-- Archive -->  <section id="archive">
+    <h2>Archive</h2>
+    <ul id="archiveList"></ul>
+  </section>  <!-- Favorites -->  <section id="favorites">
+    <h2>Favorites</h2>
+    <ul id="favoritesList"></ul>
   </section>  <!-- About -->  <section id="about">
-    <h2>About This Project</h2>
+    <h2>About</h2>
     <p>
-      This project was born from a love of literature, silence, and small daily rituals.
-      Each day, a single quote is offered — something to pause with, to reflect on,
-      or to carry with you.
-    </p>
-    <p>
-      The website is designed to feel like a quiet library: warm tones, classic typography,
-      and no distractions.
+      A literary project conceived as a daily ritual.
+      One quote a day, without haste, without noise.
     </p>
   </section>
 </main><footer>
-  © 2026 — Daily Literary Quote
-</footer><script>
-  function showSection(id) {
-    document.querySelectorAll('main section').forEach(section => {
-      section.classList.remove('active');
+  © 2026 — Daily Quote
+</footer><script type="module">
+  /* =============================
+     SUPABASE CONFIG
+  ============================== */
+
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+  const SUPABASE_URL = "https://YOUR_PROJECT_ID.supabase.co";
+  const SUPABASE_KEY = "YOUR_PUBLIC_ANON_KEY";
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  /* =============================
+     ESTADO GLOBAL
+  ============================== */
+
+  let user = null;
+  const authArea = document.getElementById('authArea');
+  let todayQuote = null;
+
+  /* =============================
+     AUTH
+  ============================== */
+
+  const { data: authData } = await supabase.auth.getSession();
+  user = authData.session?.user || null;
+  renderAuth();
+
+  /* =============================
+     FETCH QUOTES
+  ============================== */
+
+  const { data: quotes } = await supabase
+    .from('quotes')
+    .select('*')
+    .order('created_at');
+
+  const today = new Date();
+  const index = today.getDate() % quotes.length;
+  todayQuote = quotes[index];
+
+  document.getElementById('quoteText').textContent = `“${todayQuote.text}”`;
+  document.getElementById('quoteAuthor').textContent = `— ${todayQuote.author}`;
+
+  /* =============================
+     ARCHIVE
+  ============================== */
+
+  const archiveList = document.getElementById('archiveList');
+  quotes.forEach(q => {
+    const li = document.createElement('li');
+    li.textContent = `“${q.text}” — ${q.author}`;
+    archiveList.appendChild(li);
+  });
+
+  /* =============================
+     FAVORITOS
+  ============================== */
+
+  async function loadFavorites() {
+    if (!user) return;
+
+    const { data } = await supabase
+      .from('saved_quotes')
+      .select('quotes(text, author)')
+      .eq('user_id', user.id);
+
+    const list = document.getElementById('favoritesList');
+    list.innerHTML = '';
+
+    data.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `“${item.quotes.text}” — ${item.quotes.author}`;
+      list.appendChild(li);
     });
-    document.getElementById(id).classList.add('active');
   }
 
-  // Set today's date
-  const dateElement = document.getElementById('quoteDate');
-  const today = new Date();
-  dateElement.textContent = today.toDateString();
+  loadFavorites();
+
+  function renderAuth() {
+    if (user) {
+      authArea.innerHTML = `<button onclick="logout()">Sign out</button>`;
+    } else {
+      authArea.innerHTML = `<button onclick="login()">Sign in</button>`;
+    }
+  }
+
+  window.login = async function () {
+    const email = prompt('Enter your email to sign in:');
+    if (!email) return;
+    await supabase.auth.signInWithOtp({ email });
+    alert('Check your email ✨');
+  }
+
+  window.logout = async function () {
+    await supabase.auth.signOut();
+    location.reload();
+  }
+
+  /* =============================
+     ACTIONS
+  ============================== */
+
+  window.saveQuote = async function () {
+    if (!user) {
+      alert('Please sign in to save quotes ✨');
+      return;
+    }
+
+    await supabase.from('saved_quotes').insert({
+      user_id: user.id,
+      quote_id: todayQuote.id
+    });
+
+    loadFavorites();
+  }
+
+  window.shareQuote = function () {
+    const text = `“${todayQuote.text}” — ${todayQuote.author}`;
+
+    if (navigator.share) {
+      navigator.share({ title: 'Daily Quote', text });
+    } else {
+      navigator.clipboard.writeText(text);
+      alert('Quote copied ✨');
+    }
+  }
+
+  /* =============================
+     NAVIGATION
+  ============================== */
+
+  window.showSection = function (id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
 </script></body>
 </html>
